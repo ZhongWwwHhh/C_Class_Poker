@@ -3,3 +3,8 @@ build/
 
 # Ignore IDE files
 .vscode/
+
+# Ignore pyinstaller generated files
+*.spec
+dist/
+build/

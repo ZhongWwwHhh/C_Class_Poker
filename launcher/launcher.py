@@ -1,6 +1,8 @@
 import subprocess
 import multiprocessing
 import time
+import os
+import sys
 
 
 def get_test_count():
@@ -49,6 +51,11 @@ def print_progress(progress_values):
     print("Progress: {}%".format(lowest_progress))
 
 
+poker_exe_path = "../build/Poker.exe"
+if not os.path.exists(poker_exe_path):
+    print("Error: {} does not exist.".format(poker_exe_path))
+    sys.exit(1)
+
 test_count = get_test_count()
 
 # Number of processes to use
@@ -72,7 +79,7 @@ for i in range(num_processes):
         tests_per_process += remainder
 
     # Create the command to run the subprocess
-    command = ["../build/Poker.exe", str(tests_per_process)]
+    command = [poker_exe_path, str(tests_per_process)]
 
     # Launch the subprocess using subprocess.Popen
     process = subprocess.Popen(
@@ -98,6 +105,7 @@ while any(processes):
         print_progress(progress_values)
         progress_values = []
     time.sleep(0.1)
+print("Progress: 100.0%")
 
 # Print the total count
 print("情况  \t                次数\t          概率")
@@ -115,3 +123,5 @@ print("两对  \t{:20}\t{:13.10f}%".format(
     total_count[5], total_count[5] / test_count * 100))
 print("一对  \t{:20}\t{:13.10f}%".format(
     total_count[6], total_count[6] / test_count * 100))
+
+sys.exit(0)

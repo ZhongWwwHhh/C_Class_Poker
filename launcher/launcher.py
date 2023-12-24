@@ -124,4 +124,5 @@ print("两对  \t{:20}\t{:13.10f}%".format(
 print("一对  \t{:20}\t{:13.10f}%".format(
     total_count[6], total_count[6] / test_count * 100))
 
+input('Press Enter to exit...')
 sys.exit(0)

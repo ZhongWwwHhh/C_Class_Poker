@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <time.h>
 #include <stdbool.h>
+#include <locale.h>
 
 #ifndef __linux__
 #include "windows.h"

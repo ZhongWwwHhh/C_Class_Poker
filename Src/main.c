@@ -1,8 +1,19 @@
 #include "main.h"
 #include "card_func.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "zh_CN.UTF-8");
+
+    // get loop times from arg
+    uint64_t loop_times = -1;
+    if (argc < 2)
+    {
+        printf("Please provide the loop times as an argument.\n");
+        return 0;
+    }
+    loop_times = strtoull(argv[1], NULL, 10);
+
     // init rand
 #ifndef __linux__
     uint16_t PID = GetCurrentProcessId(); // 获取当前进程的ID（仅适用于Windows平台）
@@ -42,16 +53,6 @@ int main()
     Poker *pokers;
     pokers = (Poker *)malloc(sizeof(Poker) * 5);
 
-    // get loop times
-    uint64_t loop_times = -1;
-    printf("Please input the loop times: ");
-    scanf("%llu", &loop_times);
-    if (loop_times <= 0)
-    {
-        printf("The loop times must be greater than 0!\n");
-        return 0;
-    }
-
     for (uint64_t i = 0; i < loop_times; i++)
     {
         new_card(&pokers);
@@ -59,7 +60,8 @@ int main()
 
         if (0 == i % 1000000)
         {
-            printf("%%%.3f\n", ((float)i / (float)loop_times) * 100);
+            printf("%%%6.3f\n", ((float)i / (float)loop_times) * 100);
+            fflush(stdout);
         }
     }
 

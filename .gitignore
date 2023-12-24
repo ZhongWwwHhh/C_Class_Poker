@@ -8,3 +8,7 @@ build/
 *.spec
 dist/
 build/
+
+# Ignore pipenv files
+Pipfile
+Pipfile.lock

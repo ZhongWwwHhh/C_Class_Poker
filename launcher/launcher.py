@@ -54,6 +54,7 @@ def print_progress(progress_values):
 poker_exe_path = "../build/Poker.exe"
 if not os.path.exists(poker_exe_path):
     print("Error: {} does not exist.".format(poker_exe_path))
+    input('Press Enter to exit...')
     sys.exit(1)
 
 test_count = get_test_count()

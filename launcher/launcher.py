@@ -59,6 +59,9 @@ if not os.path.exists(poker_exe_path):
 
 test_count = get_test_count()
 
+# Start the timer
+time_start = time.time()
+
 # Number of processes to use
 num_processes = min(multiprocessing.cpu_count(), test_count)
 
@@ -124,6 +127,10 @@ print("两对  \t{:20}\t{:13.10f}%".format(
     total_count[5], total_count[5] / test_count * 100))
 print("一对  \t{:20}\t{:13.10f}%".format(
     total_count[6], total_count[6] / test_count * 100))
+
+# End the timer
+time_end = time.time()
+print("Time elapsed: {:.2f} seconds".format(time_end - time_start))
 
 input('Press Enter to exit...')
 sys.exit(0)

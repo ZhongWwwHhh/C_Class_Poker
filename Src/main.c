@@ -14,6 +14,10 @@ int main(int argc, char *argv[])
     }
     loop_times = strtoull(argv[1], NULL, 10);
 
+#ifdef EXECUTION_TIME
+    clock_t start_time = clock();
+#endif
+
     // init rand
 #ifndef __linux__
     uint16_t PID = GetCurrentProcessId(); // 获取当前进程的ID（仅适用于Windows平台）
@@ -73,6 +77,12 @@ int main(int argc, char *argv[])
     }
 
     free(pokers);
+
+#ifdef EXECUTION_TIME
+    clock_t end_time = clock();
+    double execution_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+    printf("Execution time: %.2f seconds\n", execution_time);
+#endif
 
     return 0;
 }

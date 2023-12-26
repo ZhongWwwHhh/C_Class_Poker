@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+// #define EXECUTION_TIME
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
